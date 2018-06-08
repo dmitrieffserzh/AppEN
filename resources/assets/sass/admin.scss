@@ -1,5 +1,5 @@
 
-// BOOTSTRAP 4
+// BOOTSTRAP 4.1
 @import "_bootstrap/functions";
 @import "_bootstrap/variables";
 @import "_bootstrap/mixins";
@@ -7,6 +7,16 @@
 @import "_bootstrap/tables";
 @import "_bootstrap/forms";
 @import "_bootstrap/buttons";
+@import "_bootstrap/button-group";
+@import "_bootstrap/input-group";
+@import "_bootstrap/custom-forms";
+@import "_bootstrap/breadcrumb";
+@import "_bootstrap/pagination";
+@import "_bootstrap/media";
+@import "_bootstrap/alert";
+@import "_bootstrap/close";
+@import "_bootstrap/modal";
+@import "_bootstrap/utilities";
 
 a {
   text-decoration: none;
@@ -15,6 +25,8 @@ a {
 body, html {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -24,31 +36,12 @@ body {
 }
 
 // SCROLL STYLE
-.blueScroll::-webkit-scrollbar-track {
-  background-color: #d3d4d4;
-}
-
-.blueScroll::-webkit-scrollbar {
-  width: 10px;
-  background-color: transparent;
-}
-
-.blueScroll::-webkit-scrollbar-thumb {
-  background-color: #5e6265;
-}
-
-.down-content .aside-left::-webkit-scrollbar-track {
-  background-color: #d3d4d4;
-}
-
-.down-content .aside-left::-webkit-scrollbar {
-  width: 2px;
-  background-color: transparent;
-}
-
-.down-content .aside-left::-webkit-scrollbar-thumb {
-  background-color: #5e6265;
-}
+.blueScroll::-webkit-scrollbar-track                {background-color: #d3d4d4;}
+.blueScroll::-webkit-scrollbar                      {background-color: transparent;width: 10px;}
+.blueScroll::-webkit-scrollbar-thumb                {background-color: #5e6265;}
+.down-content .aside-left::-webkit-scrollbar-track  {background-color: #d3d4d4;}
+.down-content .aside-left::-webkit-scrollbar        {background-color: transparent;width: 2px;}
+.down-content .aside-left::-webkit-scrollbar-thumb  {background-color: #5e6265;}
 
 header.top-head {
   background: #272830;
@@ -198,4 +191,49 @@ section.down-content > * {
       margin-right: 10px;
     }
   }
+}
+
+// LOGIN FORM ========================================================================================================//
+.body-login {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: #5268d2;
+  background: -webkit-linear-gradient(right, #4a4173 0%, #34679c 100%);
+  background: -o-linear-gradient(right, #4a4173 0%, #34679c 100%);
+  background: linear-gradient(to left, #4a4173 0%, #34679c 100%);
+}
+.form-signin {
+  background: #fff;
+  width: 100%;
+  max-width: 300px;
+  padding: 30px;
+  margin: auto;
+  border-radius: 5px;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

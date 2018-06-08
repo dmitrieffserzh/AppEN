@@ -36,7 +36,11 @@ Route::group([
 	Route::resource('tags',       'TagController',      [ 'as' => 'admin' ]);
 	Route::resource('users',      'UserController',     [ 'as' => 'admin' ]);
 	Route::resource('roles',      'RoleController',     [ 'as' => 'admin' ]);
-	Route::get     ('/',                                [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ]);
+	Route::get     ('/',          [ 'as' => 'admin.dashboard',    'uses' => 'AdminController@index' ]);
+
+	// AUTH ADMIN
+	Route::get     ('/login',     [ 'as' => 'admin.login',        'uses' => 'LoginController@showLoginForm' ]);
+	Route::post    ('/login',     [ 'as' => 'admin.login.submit', 'uses' => 'LoginController@login' ]);
 
 });
 
