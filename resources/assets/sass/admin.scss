@@ -213,6 +213,14 @@ section.down-content > * {
   padding: 30px;
   margin: auto;
   border-radius: 5px;
+  & h1 {
+    font-size: 22px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+  }
+  & .feather-power {
+    stroke: #dfe3e6;
+  }
 }
 .form-signin .checkbox {
   font-weight: 400;

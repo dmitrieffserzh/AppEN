@@ -7903,6 +7903,16 @@ section.down-content > * {
   border-radius: 5px;
 }
 
+.form-signin h1 {
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+}
+
+.form-signin .feather-power {
+  stroke: #dfe3e6;
+}
+
 .form-signin .checkbox {
   font-weight: 400;
 }
