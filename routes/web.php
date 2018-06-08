@@ -14,8 +14,27 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/admin', 'Admin\AdminController@index')->name('admin');
 
+
+
+
+// ADMIN PANEL =======================================================================================================//
+
+Route::group([
+	'namespace' => 'Admin',
+	'prefix'    => 'admin',
+	'name'      => 'admin'] , function() {
+
+	Route::get('/',                                         [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ]);
+	Route::resource('news',         'NewsController',       [ 'as' => 'admin' ]);
+	Route::resource('stories',      'StoryController',      [ 'as' => 'admin' ]);
+	Route::resource('pages',        'PageController',       [ 'as' => 'admin' ]);
+	Route::resource('comments',     'CommentController',    [ 'as' => 'admin' ]);
+	Route::resource('categories',   'CategoryController',   [ 'as' => 'admin' ]);
+	Route::resource('tags',         'TagController',        [ 'as' => 'admin' ]);
+
+
+});
 
 
 
