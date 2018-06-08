@@ -117,13 +117,12 @@ section.down-content > * {
 .down-content .content {
   width: calc(100% - 250px);
   font-size: 13px;
-  padding: 15px;
   overflow-y: auto;
   height: 100%;
 }
 
 .down-content .content .scroll-content {
-  width: 100%;
+  width: calc(100% - 30px);
   height: 4000px;
 }
 
