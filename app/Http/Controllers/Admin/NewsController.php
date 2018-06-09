@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\Admin\User;
+use App\Models\Admin\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+Use Dotenv\Validator;
 
 class NewsController extends Controller {
 
@@ -13,7 +17,7 @@ class NewsController extends Controller {
 
 
 	public function index() {
-		$articles = Article::latest()->paginate(5);
+		$articles = News::latest()->paginate(5);
 		return view('admin.news.index',compact('articles'))
 			->with('i', (request()->input('page', 1) - 1) * 5);
 	}
@@ -25,41 +29,52 @@ class NewsController extends Controller {
 
 
 	public function store(Request $request) {
+
 		request()->validate([
 			'title' => 'required',
-			'body' => 'required',
+			'content' => 'required',
 		]);
-		Article::create($request->all());
+
+		$news = new News();
+		$news->user_id = Auth::id();
+		$news->title = $request['title'];
+		$news->content = $request['content'];
+		$news->published = 1;
+		$news->category_id = 1;
+		$news->save();
+
 		return redirect()->route('admin.news.index')
 		                 ->with('success','Article created successfully');
 	}
 
 
 	public function show($id) {
-		$article = Article::find($id);
+		$article = News::find($id);
 		return view('admin.news.show',compact('article'));
 	}
 
 
 	public function edit($id) {
-		$article = Article::find($id);
+		$article = News::find($id);
 		return view('admin.news.edit',compact('article'));
 	}
 
 
 	public function update(Request $request, $id) {
-		request()->validate([
-			'title' => 'required',
-			'body' => 'required',
-		]);
-		Article::find($id)->update($request->all());
+//		request()->validate([
+//			'title' => 'required',
+//			'content' => 'required',
+//
+//		]);
+
+		News::find($id)->update($request->all());
 		return redirect()->route('admin.news.index')
 		                 ->with('success','Article updated successfully');
 	}
 
 
 	public function destroy($id) {
-		Article::find($id)->delete();
+		News::find($id)->delete();
 		return redirect()->route('admin.news.index')
 		                 ->with('success','Article deleted successfully');
 	}

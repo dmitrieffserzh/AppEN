@@ -2,65 +2,75 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admin\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller {
 
-	public function __construct() {
-		// $this->middleware('auth');
-	}
 
+	public function __construct() {
+		//$this->middleware('auth');
+	}
 
 	public function index() {
-		$articles = Article::latest()->paginate(5);
-		return view('admin.story.index',compact('articles'))
-			->with('i', (request()->input('page', 1) - 1) * 5);
+		return view( 'admin.categories.index', [
+			'category'   => [],
+			'categories' => Category::with( 'children' )->where( 'parent_id', '0' )->paginate( 15 ),
+			'delimiter'  => '',
+			'i'=>  (request()->input('page', 1) - 1) * 5
+		] );
 	}
-
 
 	public function create() {
-		return view('admin.story.create');
+		return view( 'admin.categories.create', [
+			'category'   => [],
+			'categories' => Category::with( 'children' )->where( 'parent_id', '0' )->get(),
+			'delimiter'  => ''
+		] );
 	}
 
+	public function store( Request $request ) {
+//		request()->validate([
+//			'title' => 'required',
+//			'slug' => 'required|unique:categories,slug',
+//		]);
 
-	public function store(Request $request) {
-		request()->validate([
+		Category::create( $request->all() );
+
+		return redirect()->route( 'admin.categories.index' )
+		                 ->with( 'success', 'Категория успешно добавлена' );
+	}
+
+	public function show( $id ) {
+		$category = Category::findOrFail( $id );
+
+		return view( 'admin.categories.show', compact( 'category' ) );
+	}
+
+	public function edit( $id ) {
+		$categories = Category::find( $id );
+
+		return view( 'admin.categories.create', compact( 'categories' ) );
+	}
+
+	public function update( Request $request, $id ) {
+		request()->validate( [
 			'title' => 'required',
-			'body' => 'required',
-		]);
-		Article::create($request->all());
-		return redirect()->route('admin.story.index')
-		                 ->with('success','Article created successfully');
+			'slug'  => 'required|unique:categories,slug',
+		] );
+
+		Category::find( $id )->update( $request->all() );
+
+		return redirect()->route( 'admin.categories.index' )
+		                 ->with( 'success', 'Категория успешно обновлена!' );
 	}
 
+	public function destroy( $id ) {
+		Category::find( $id )->delete();
 
-	public function show($id) {
-		$article = Article::find($id);
-		return view('admin.story.show',compact('article'));
+		return redirect()->route( 'admin.categories.index' )
+		                 ->with( 'success', 'Категория удалена!' );
 	}
 
-
-	public function edit($id) {
-		$article = Article::find($id);
-		return view('admin.story.edit',compact('article'));
-	}
-
-
-	public function update(Request $request, $id) {
-		request()->validate([
-			'title' => 'required',
-			'body' => 'required',
-		]);
-		Article::find($id)->update($request->all());
-		return redirect()->route('admin.story.index')
-		                 ->with('success','Article updated successfully');
-	}
-
-
-	public function destroy($id) {
-		Article::find($id)->delete();
-		return redirect()->route('admin.story.index')
-		                 ->with('success','Article deleted successfully');
-	}
 }

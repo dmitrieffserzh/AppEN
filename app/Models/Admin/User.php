@@ -1,28 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models\Admin;
 
-use App\Models\Profile;
-use App\Models\News;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable {
 
-	use Notifiable;
-	use SoftDeletes;
+    use Notifiable;
+    use SoftDeletes;
 
     protected $fillable = [
         'nickname', 'email', 'password',
     ];
 
+
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-
-	// RELATIONS
+    // RELATIONS
 	public function getProfile() {
 		return $this->hasOne( Profile::class );
 	}
@@ -30,5 +28,6 @@ class User extends Authenticatable {
 	public function getNews() {
 		return $this->hasMany( News::class );
 	}
+
 
 }

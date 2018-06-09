@@ -8,7 +8,7 @@
                 <h2>Add New Article</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('articles.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('admin.categories.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -26,9 +26,7 @@
     @endif
 
 
-    {!! Form::open(array('route' => 'articles.store','method'=>'POST')) !!}
-         @include('articles.form')
-    {!! Form::close() !!}
+         @include('admin.categories.form')
 
 
 @endsection

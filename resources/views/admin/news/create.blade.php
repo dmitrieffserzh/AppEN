@@ -8,7 +8,7 @@
                 <h2>Add New Article</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('articles.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('admin.news.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -25,10 +25,10 @@
         </div>
     @endif
 
-
-    {!! Form::open(array('route' => 'articles.store','method'=>'POST')) !!}
-         @include('articles.form')
-    {!! Form::close() !!}
+    <form action="{{ route('admin.news.store') }}" method="POST">
+        @csrf
+         @include('admin.news.form')
+    </form>
 
 
 @endsection

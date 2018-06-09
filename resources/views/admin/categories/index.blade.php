@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 5.5 CRUD Example from scratch</h2>
+                <h2>Категории новостей</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('articles.create') }}"> Create New Article</a>
+                <a class="btn btn-success" href="{{ route('admin.categories.create') }}"> Создать новую категорию</a>
             </div>
         </div>
     </div>
@@ -28,22 +28,25 @@
             <th>Body</th>
             <th width="280px">Action</th>
         </tr>
-    @foreach ($articles as $article)
-    <tr>
-        <td>{{ ++$i }}</td>
-        <td>{{ $article->title}}</td>
-        <td>{{ $article->body}}</td>
-        <td>
-            <a class="btn btn-info" href="{{ route('articles.show',$article->id) }}">Show</a>
-            <a class="btn btn-primary" href="{{ route('articles.edit',$article->id) }}">Edit</a>
-            {!! Form::open(['method' => 'DELETE','route' => ['articles.destroy', $article->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
-        </td>
-    </tr>
-    @endforeach
+        @include('admin.categories.partials.item', ['categories' => $categories])
+    {{--@foreach ($categories as $category)--}}
+    {{--<tr>--}}
+        {{--<td>{{ ++$i }}</td>--}}
+        {{--<td>{{ $category->title}}</td>--}}
+        {{--<td>{{ $category->slug}}</td>--}}
+        {{--<td>--}}
+            {{--<a class="btn btn-info" href="{{ route('admin.categories.show', $category->id) }}">Show</a>--}}
+            {{--<a class="btn btn-primary" href="{{ route('admin.categories.edit', $category->id) }}">Edit</a>--}}
+            {{--<form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" style="display:inline">--}}
+                {{--@csrf--}}
+                {{--{{ method_field('DELETE') }}--}}
+                {{--<button type="submit" class="btn btn-danger">Del</button>--}}
+            {{--</form>--}}
+        {{--</td>--}}
+    {{--</tr>--}}
+    {{--@endforeach--}}
     </table>
 
 
-    {!! $articles->links() !!}
+    {!! $categories->links() !!}
 @endsection

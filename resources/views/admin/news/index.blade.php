@@ -8,7 +8,7 @@
                 <h2>Laravel 5.5 CRUD Example from scratch</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('articles.create') }}"> Create New Article</a>
+                <a class="btn btn-success" href="{{ route('admin.news.create') }}"> Create New Article</a>
             </div>
         </div>
     </div>
@@ -34,11 +34,13 @@
         <td>{{ $article->title}}</td>
         <td>{{ $article->body}}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('articles.show',$article->id) }}">Show</a>
-            <a class="btn btn-primary" href="{{ route('articles.edit',$article->id) }}">Edit</a>
-            {!! Form::open(['method' => 'DELETE','route' => ['articles.destroy', $article->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
+            <a class="btn btn-info" href="{{ route('admin.news.show',$article->id) }}">Show</a>
+            <a class="btn btn-primary" href="{{ route('admin.news.edit',$article->id) }}">Edit</a>
+            <form action="{{ route('admin.news.destroy', $article->id) }}" method="POST" style="display:inline">
+                @csrf
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger">Del</button>
+            </form>
         </td>
     </tr>
     @endforeach
