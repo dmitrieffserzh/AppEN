@@ -3,12 +3,12 @@
 
     <div class="form-group">
         <label for="title">Название категории</label>
-        <input type="text" name="title" id="title" class="form-control" placeholder="">
+        <input type="text" name="title" id="title" class="form-control" value="{{ $category->title or "" }}" placeholder="">
     </div>
 
     <div class="form-group">
         <label for="slug">URL категории</label>
-        <input type="text" name="slug" id="slug" class="form-control" placeholder="">
+        <input type="text" name="slug" id="slug" class="form-control" value="{{ $category->slug or "" }}" placeholder="">
         <p class="mt-1 p-2 bg-light small text-info rounded">Допускается ввод только латинских символов и
             символов " _ " и " - " без пробелов!</p>
     </div>
@@ -28,3 +28,11 @@
 
     <button type="submit" class="btn btn-primary">Добавить категорию</button>
 </form>
+
+@section('scripts')
+    <script>
+        $('#parent_id').select2({
+            placeholder: 'Select an option'
+        });
+    </script>
+@endsection

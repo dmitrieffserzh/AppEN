@@ -25,10 +25,9 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.news.store') }}" method="POST">
-        @csrf
+
          @include('admin.news.form')
-    </form>
 
 
 @endsection
+

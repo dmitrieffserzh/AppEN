@@ -25,4 +25,8 @@ class News extends Model {
 	public function getAuthor() {
 		return $this->belongsTo(User::class, 'user_id');
 	}
+
+    public function getCategory() {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

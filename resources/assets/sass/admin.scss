@@ -18,6 +18,12 @@
 @import "_bootstrap/modal";
 @import "_bootstrap/utilities";
 
+
+
+// PLUGINS
+@import "../plugins/jq_select/css/select.css";
+
+
 a {
   text-decoration: none;
 }
@@ -37,7 +43,7 @@ body {
 
 // SCROLL STYLE
 .blueScroll::-webkit-scrollbar-track                {background-color: #d3d4d4;}
-.blueScroll::-webkit-scrollbar                      {background-color: transparent;width: 10px;}
+.blueScroll::-webkit-scrollbar                      {background-color: transparent;width: 5px;}
 .blueScroll::-webkit-scrollbar-thumb                {background-color: #5e6265;}
 .down-content .aside-left::-webkit-scrollbar-track  {background-color: #d3d4d4;}
 .down-content .aside-left::-webkit-scrollbar        {background-color: transparent;width: 2px;}
@@ -123,7 +129,6 @@ section.down-content > * {
 
 .down-content .content .scroll-content {
   width: calc(100% - 60px);
-  height: 4000px;
 }
 
 .hide-aside {
@@ -142,7 +147,7 @@ section.down-content > * {
   color: #fff;
   font-size: 14px;
   line-height: 20px;
-  transition: .3s;
+  transition: color, background .3s;
   &:hover {
     background: #343746;
     color: #8f92ff !important;
@@ -161,7 +166,7 @@ section.down-content > * {
     display: block;
     background: transparent;
     width: 250px;
-    transition: .3s;
+    transition:color, background  .3s;
     &:hover {
       background: #343746;
     }
@@ -179,7 +184,7 @@ section.down-content > * {
     padding: 7px 15px;
     width: 220px;
     opacity: 1;
-    transition: .3s;
+    transition: color, background  .3s;
     &:hover {
       color: #8f92ff;
     }

@@ -63,7 +63,7 @@ const Modal = (($) => {
     DIALOG             : '.modal-dialog',
     DATA_TOGGLE        : '[data-toggle="modal"]',
     DATA_DISMISS       : '[data-dismiss="modal"]',
-    FIXED_CONTENT      : '.header, .fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
+    FIXED_CONTENT      : '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
     STICKY_CONTENT     : '.sticky-top',
     NAVBAR_TOGGLER     : '.navbar-toggler'
   }
@@ -430,7 +430,6 @@ const Modal = (($) => {
       if (this._isBodyOverflowing) {
         // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
         //   while $(DOMNode).css('padding-right') returns the calculated value or 0 if not set
-
 
         // Adjust fixed content padding
         $(Selector.FIXED_CONTENT).each((index, element) => {

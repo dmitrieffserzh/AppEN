@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller {
@@ -42,6 +44,7 @@ class LoginController extends Controller {
 			//if successful redirect to admin dashboard
 			return redirect()->intended(route('admin.dashboard'));
 		}
+
 		//if unsuccessfull redirect back to the login for with form data
 		return redirect()->back()->withInput($request->only('email','remember'));
 	}

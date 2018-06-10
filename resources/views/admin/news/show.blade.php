@@ -25,6 +25,8 @@
             <div class="form-group">
                 <strong>Body:</strong>
                 {{ $article->content}}
+                {{ $article->getAuthor->nickname }}
+                {{ $article->getCategory->title }}
             </div>
         </div>
     </div>

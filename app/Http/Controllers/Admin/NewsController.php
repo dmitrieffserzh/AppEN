@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin\User;
+use App\Models\Admin\Category;
 use App\Models\Admin\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,7 +24,11 @@ class NewsController extends Controller {
 
 
 	public function create() {
-		return view('admin.news.create');
+		return view('admin.news.create', [
+            'category'   => [],
+			'categories' => Category::with('children')->where('parent_id', '0')->get(),
+			'delimiter'  => ''
+            ]);
 	}
 
 
@@ -40,7 +44,7 @@ class NewsController extends Controller {
 		$news->title = $request['title'];
 		$news->content = $request['content'];
 		$news->published = 1;
-		$news->category_id = 1;
+		$news->category_id = $request['category_id'];
 		$news->save();
 
 		return redirect()->route('admin.news.index')
@@ -55,8 +59,13 @@ class NewsController extends Controller {
 
 
 	public function edit($id) {
-		$article = News::find($id);
-		return view('admin.news.edit',compact('article'));
+		return view('admin.news.edit',
+        ['article'=> News::find($id),
+        'category'   => [],
+			'categories' => Category::with('children')->where('parent_id', '0')->get(),
+			'delimiter'  => ''
+
+        ]);
 	}
 
 

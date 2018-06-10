@@ -16,7 +16,7 @@ class CategoryController extends Controller {
 	public function index() {
 		return view( 'admin.categories.index', [
 			'category'   => [],
-			'categories' => Category::with( 'children' )->where( 'parent_id', '0' )->paginate( 15 ),
+			'categories' => Category::with( 'children' )->where( 'parent_id', '0' )->paginate(15),
 			'delimiter'  => '',
 			'i'=>  (request()->input('page', 1) - 1) * 5
 		] );
@@ -51,14 +51,19 @@ class CategoryController extends Controller {
 	public function edit( $id ) {
 		$categories = Category::find( $id );
 
-		return view( 'admin.categories.create', compact( 'categories' ) );
+		return view( 'admin.categories.create', [
+
+                'category'   => Category::find( $id ),
+                'categories' => Category::with( 'children' )->where( 'parent_id', '0' )->paginate( 15 ),
+                'delimiter'  => ''
+            ]);
 	}
 
 	public function update( Request $request, $id ) {
-		request()->validate( [
-			'title' => 'required',
-			'slug'  => 'required|unique:categories,slug',
-		] );
+//		request()->validate( [
+//			'title' => 'required',
+//			'slug'  => 'required|unique:categories,slug',
+//		] );
 
 		Category::find( $id )->update( $request->all() );
 

@@ -4,11 +4,11 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Laravel 5.5 CRUD Example from scratch</h2>
+            <div class="float-left">
+                <h2>Новости</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('admin.news.create') }}"> Create New Article</a>
+            <div class="float-right">
+                <a class="btn btn-success" href="{{ route('admin.news.create') }}">Создать новость</a>
             </div>
         </div>
     </div>
